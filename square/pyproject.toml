@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "square_shann"
+version = "0.0.1"
+authors = [
+  { name="sihann", email="sihann@ttu.ee" },
+]
+description = "A Python module that calculates the value of the square formula (a+b)²."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sihann/square_shann"
