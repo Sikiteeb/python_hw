@@ -3,10 +3,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "square_shann"
+name = "square_sihann"
 version = "0.0.1"
 authors = [
-  { name="sihann", email="sihann@ttu.ee" },
+  { name="sikiteeb", email="yyyy@ttu.ee" },
 ]
 description = "A Python module that calculates the value of the square formula (a+b)²."
 readme = "README.md"
@@ -18,4 +18,4 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/sihann/square_shann"
+"Homepage" = "https://github.com/skiteeb/python_hw/square"
