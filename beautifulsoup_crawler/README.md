@@ -1,9 +1,6 @@
-To run Scrapy version: 
-cd into scrapycrawl/spiders and run command:
+Crawls through https://www.kaubamaja.ee/kodu/lemmikloomade-aksessuaarid to get Item name, price and picture URL
 
-scrapy crawl kaubamaja -o kaubamaja_crawl.json
-
-To run Beautiful Soup version: 
+To run: 
 
 python kaubamaja_soup_crawl.py
 
