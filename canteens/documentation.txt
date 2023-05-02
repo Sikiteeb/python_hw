@@ -1,0 +1,143 @@
+******** Documentation for Part A. Using SQLite and Plain SQL ********
+
+*** Importing Required Libraries ***
+
+import sqlite3
+The sqlite3 module is part of the Python Standard Library and provides an interface for working with SQLite databases.
+
+*** Creating a Database and Connecting ***
+
+conn = sqlite3.connect('diners.db')
+cursor = conn.cursor()
+
+The sqlite3.connect() function is used to create a connection to the SQLite database. It takes the database file name as an argument. A cursor is created using the cursor() method of the connection object, which is used to execute SQL statements.
+
+*** Creating Tables ***
+
+# ... (Define SQL statements for creating tables)
+
+cursor.execute(create_provider_table_sql)
+cursor.execute(create_canteen_table_sql)
+conn.commit()
+
+SQL statements for creating the tables are defined as strings. The execute() method of the cursor is used to execute the SQL statements for creating the provider and canteen tables. The connection is committed to save the changes.
+
+*** Inserting Data ***
+
+# ... (Define SQL statements and data for inserting providers and canteens)
+
+cursor.executemany(insert_provider_sql, providers)
+cursor.execute(insert_canteen_sql, it_college_canteen)
+cursor.executemany(insert_canteen_sql, canteens)
+conn.commit()
+
+SQL statements and data for inserting providers and canteens are defined.
+The executemany() method of the cursor is used to execute the SQL statements for
+inserting multiple records at once. The execute() method is used to insert a
+single record (IT College canteen).
+The connection is committed to save the changes.
+
+
+*** Querying the Database ***
+
+# ... (Define SQL statements for querying canteens)
+
+cursor.execute(query_canteens_open_9_to_1620)
+canteens_open_9_to_1620 = cursor.fetchall()
+cursor.execute(query_canteens_baltic_restaurants)
+canteens_baltic_restaurants = cursor.fetchall()
+
+SQL statements for querying the canteens are defined.
+The execute() method of the cursor is used to execute the SQL statements.
+The fetchall() method retrieves all matching records from the database.
+
+*** Displaying Results ***
+
+# ... (Print queried results)
+The queried results are printed in a user-friendly format, showing the canteens' ID,
+name, location, opening time, and closing time.
+
+*** Closing the Connection ***
+
+conn.close()
+
+Finally, the connection is closed to release the connection to the database.
+
+
+******** Documentation for part B. Using SqlAlchemy ********
+
+*** Importing Required Libraries ***
+
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import sessionmaker
+
+The above import statements import the necessary libraries and functions from SQLAlchemy. These libraries are required for creating the database, tables, and relationships
+
+*** Defining ORM Models ***
+
+Base = declarative_base()
+
+class Provider(Base):
+    # ...
+
+class Canteen(Base):
+    # ...
+The Base object is created using the declarative_base function from SQLAlchemy.
+It's used to define the ORM models for the Provider and Canteen tables.
+
+*** Creating Database and Tables ***
+
+engine = create_engine('sqlite:///diners_orm.db')
+Base.metadata.create_all(engine)
+
+The create_engine function creates a connection to the SQLite database,
+and the Base.metadata.create_all(engine) command creates the tables based on
+the defined ORM models.
+
+*** Creating a Session ***
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+A session is created to interact with the database.
+The sessionmaker function is used to create a session factory,
+which is then bound to the engine.
+A new session is instantiated from the session factory.
+
+*** Inserting Providers and Canteens ***
+
+# ... (Define lists of providers and canteens)
+
+session.add_all(providers)
+session.add_all(canteens)
+session.commit()
+
+Lists of providers and canteens are defined, and then inserted into the database
+using the session.add_all method. The session is committed to save the changes.
+
+*** Querying the Database ***
+
+# Query for canteens open from 09:00 to 16:20
+canteens_open_9_to_1620 = session.query(Canteen).filter(Canteen.time_open <= '9:00',
+Canteen.time_closed >= '16:20').all()
+
+# Query for canteens serviced by Baltic Restaurants Estonia AS
+canteens_baltic_restaurants = session.query(Canteen).join(Provider).filter(Provider.provider_name == 'Baltic Restaurants Estonia AS').all()
+
+Queries are created using the session.query method, which is followed by
+filtering and joining methods to create the desired query.
+The all method retrieves all matching records from the database.
+
+*** Displaying Results ***
+
+# ... (Print queried results)
+
+The queried results are printed in a readable format, showing the canteens'
+ID, name, location, opening time, and closing time.
+
+*** Closing the Session ***
+
+session.close()
+
+Finally, the session is closed to release the connection to the database.
