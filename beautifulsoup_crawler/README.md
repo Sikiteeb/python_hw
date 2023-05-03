@@ -1,4 +1,4 @@
-Crawls through https://www.kaubamaja.ee/kodu/lemmikloomade-aksessuaarid to get Item name, price and picture URL
+Crawls through https://www.kaubamaja.ee/kodu/lemmikloomade-aksessuaarid to get item name, price and picture URL
 
 To run: 
 
