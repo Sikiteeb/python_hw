@@ -12,6 +12,5 @@ def calculate_table_to_file():
     pass
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     calculate_table_to_file()
